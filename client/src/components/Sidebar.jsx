@@ -50,7 +50,7 @@ function Sidebar() {
     <>
       <div className="border-b border-[rgba(65,200,198,0.14)] bg-white/88 px-4 py-4 backdrop-blur lg:hidden">
         <div className="mb-4 flex items-center justify-between gap-4">
-          <BrandMark size={54} />
+          <BrandMark size={46} />
           <div className="rounded-2xl border border-sky-200 bg-sky-50 px-3 py-2 text-right">
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">
               Operations
@@ -69,20 +69,18 @@ function Sidebar() {
       <aside className="hidden w-80 shrink-0 border-r border-[rgba(65,200,198,0.14)] bg-[linear-gradient(180deg,#fbfefe_0%,#eef9f8_100%)] text-white lg:flex lg:flex-col">
         <div className="flex flex-1 flex-col px-6 py-8">
           <div className="ocs-pattern overflow-hidden rounded-[34px] border border-[rgba(255,255,255,0.24)] bg-[linear-gradient(135deg,#2d8f98_0%,#41c8c6_62%,#6edfd3_100%)] p-6 shadow-[0_32px_80px_rgba(34,72,91,0.18)]">
-            <BrandMark
-              className="text-white"
-              logoClassName="drop-shadow-[0_8px_24px_rgba(34,72,91,0.16)]"
-              subtitle="Home Visit Doctors"
-              size={62}
-              titleClassName="text-white"
-              subtitleClassName="text-white/74"
-            />
+            <div className="inline-flex rounded-[24px] bg-white/94 px-4 py-3 shadow-[0_16px_40px_rgba(34,72,91,0.14)]">
+              <BrandMark
+                logoClassName="drop-shadow-[0_8px_24px_rgba(34,72,91,0.06)]"
+                size={48}
+              />
+            </div>
             <h1 className="mt-5 font-display text-[2.2rem] leading-[1.05] text-white">
               Home visit care,
               <span className="mt-2 block text-[#ffe189]">beautifully coordinated.</span>
             </h1>
             <p className="mt-4 max-w-xs text-sm leading-6 text-white/86">
-              The OCS Medecins operations desk for patients, visits, doctor notes, and billing.
+              The OCS Médecins operations desk for patients, visits, doctor notes, and billing.
             </p>
           </div>
 

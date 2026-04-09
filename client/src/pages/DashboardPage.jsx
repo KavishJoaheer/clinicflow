@@ -67,7 +67,7 @@ function DashboardPage() {
   return (
     <div className="space-y-6">
       <PageHeader
-        eyebrow="OCS Medecins"
+        eyebrow="OCS Médecins"
         title="Operations dashboard"
         description="A daily command center for your home visit team, with patient activity, appointments, billing, and care updates organized in one branded workspace."
       />
@@ -79,7 +79,7 @@ function DashboardPage() {
               Home Visit Doctors
             </p>
             <h3 className="mt-3 max-w-2xl font-display text-4xl leading-tight tracking-tight">
-              Calm coordination for OCS Medecins.
+              Calm coordination for OCS Médecins.
               <span className="block text-[#ffe189]">From hotline to billing.</span>
             </h3>
             <p className="mt-4 max-w-2xl text-base leading-7 text-white/84">

@@ -4,7 +4,7 @@ function LoadingState({ label = "Loading" }) {
       <div className="size-10 animate-spin rounded-full border-4 border-sky-100 border-t-[#2d8f98]" />
       <div>
         <p className="text-sm font-semibold text-slate-900">{label}</p>
-        <p className="mt-1 text-sm text-[#678891]">Preparing the latest OCS Medecins records.</p>
+        <p className="mt-1 text-sm text-[#678891]">Preparing the latest OCS Médecins records.</p>
       </div>
     </div>
   );

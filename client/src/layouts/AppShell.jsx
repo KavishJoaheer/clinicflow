@@ -9,7 +9,7 @@ const pageMeta = {
   },
   "/patients": {
     label: "Patients",
-    helper: "Manage patient records and review each OCS Medecins care timeline at a glance.",
+    helper: "Manage patient records and review each OCS Médecins care timeline at a glance.",
   },
   "/appointments": {
     label: "Appointments",
@@ -25,7 +25,7 @@ const pageMeta = {
   },
   "/doctors": {
     label: "Doctors",
-    helper: "Maintain the OCS Medecins roster and specializations.",
+    helper: "Maintain the OCS Médecins roster and specializations.",
   },
 };
 
@@ -49,7 +49,7 @@ function AppShell() {
             <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#2d8f98]">
-                  OCS Medecins Operations
+                  OCS Médecins Operations
                 </p>
                 <p className="text-xs font-semibold uppercase tracking-[0.28em] text-sky-600">
                   {activeMeta.label}
