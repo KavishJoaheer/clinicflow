@@ -25,7 +25,7 @@ function ConfirmDialog({
           className={`rounded-2xl px-4 py-2.5 text-sm font-semibold text-white shadow-lg transition ${
             tone === "danger"
               ? "bg-rose-600 hover:bg-rose-700"
-              : "bg-sky-600 hover:bg-sky-700"
+              : "bg-[#2d8f98] hover:bg-[#26717c]"
           }`}
         >
           {confirmLabel}

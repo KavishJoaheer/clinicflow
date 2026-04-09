@@ -18,7 +18,7 @@ export function formatDate(value) {
 export function formatDateTime(date, time) {
   if (!date) return "Not scheduled";
   if (!time) return dayjs(date).format("MMM D, YYYY");
-  return dayjs(`${date}T${time}`).format("MMM D, YYYY • h:mm A");
+  return dayjs(`${date}T${time}`).format("MMM D, YYYY [at] h:mm A");
 }
 
 export function truncate(value, limit = 110) {
@@ -38,8 +38,9 @@ export function statusTone(status) {
     case "cancelled":
       return "bg-rose-100 text-rose-700 ring-rose-600/20";
     case "scheduled":
-    case "unpaid":
       return "bg-sky-100 text-sky-700 ring-sky-600/20";
+    case "unpaid":
+      return "bg-amber-100 text-amber-700 ring-amber-500/20";
     default:
       return "bg-slate-100 text-slate-700 ring-slate-500/20";
   }

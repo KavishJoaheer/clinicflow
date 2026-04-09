@@ -86,7 +86,7 @@ function PatientProfilePage() {
       <PageHeader
         eyebrow="Patient profile"
         title={data.patient.full_name}
-        description={`${data.patient.age} years old • ${data.patient.contact_number} • ${data.patient.address}`}
+        description={`${data.patient.age} years old - ${data.patient.contact_number} - ${data.patient.address}`}
         actions={
           <Link
             to="/patients"
@@ -117,7 +117,10 @@ function PatientProfilePage() {
       </div>
 
       <div className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
-        <SectionCard title="Appointment history" subtitle="Timeline of scheduled visits and status changes.">
+        <SectionCard
+          title="Appointment history"
+          subtitle="Timeline of scheduled visits and status changes."
+        >
           {data.appointments.length ? (
             <div className="space-y-3">
               {data.appointments.map((appointment) => (
@@ -151,7 +154,7 @@ function PatientProfilePage() {
           )}
         </SectionCard>
 
-        <SectionCard title="Billing history" subtitle="Every bill attached to this patient’s consultations.">
+        <SectionCard title="Billing history" subtitle="Every bill attached to this patient's consultations.">
           {data.bills.length ? (
             <div className="space-y-3">
               {data.bills.map((bill) => (
@@ -161,9 +164,11 @@ function PatientProfilePage() {
                 >
                   <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <div>
-                      <p className="font-semibold text-slate-950">{formatCurrency(bill.total_amount)}</p>
+                      <p className="font-semibold text-slate-950">
+                        {formatCurrency(bill.total_amount)}
+                      </p>
                       <p className="mt-1 text-sm text-slate-500">
-                        {bill.doctor_name} • {formatDate(bill.consultation_date)}
+                        {bill.doctor_name} - {formatDate(bill.consultation_date)}
                       </p>
                     </div>
                     <StatusBadge value={bill.status} />
@@ -202,7 +207,7 @@ function PatientProfilePage() {
                   <div>
                     <p className="font-semibold text-slate-950">{consultation.doctor_name}</p>
                     <p className="mt-1 text-sm text-slate-500">
-                      {consultation.specialization} • {formatDate(consultation.consultation_date)}
+                      {consultation.specialization} - {formatDate(consultation.consultation_date)}
                     </p>
                   </div>
                 </div>
