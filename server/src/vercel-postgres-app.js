@@ -1,5 +1,7 @@
 const express = require("express");
 const cors = require("cors");
+const helmet = require("helmet");
+const rateLimit = require("express-rate-limit");
 const {
   calculateBillingTotal,
   getTodayLocal,
@@ -26,12 +28,34 @@ function getAllowedOrigins() {
 function createPostgresApp() {
   const app = express();
   const configuredOrigins = getAllowedOrigins();
+  const isProduction = process.env.NODE_ENV === "production";
   const validAppointmentStatuses = new Set(["scheduled", "completed", "cancelled"]);
+
+  app.use(helmet());
+
+  const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100,
+    standardHeaders: true,
+    legacyHeaders: false,
+    message: { error: "Too many requests, please try again later." },
+  });
+  app.use(limiter);
 
   app.use(
     cors({
       origin(origin, callback) {
-        if (!origin || configuredOrigins.length === 0 || configuredOrigins.includes(origin)) {
+        if (!origin && !isProduction) {
+          callback(null, true);
+          return;
+        }
+
+        if (configuredOrigins.length === 0 && isProduction) {
+          callback(new Error("CORS not configured for production."));
+          return;
+        }
+
+        if (!origin || configuredOrigins.includes(origin)) {
           callback(null, true);
           return;
         }
@@ -41,6 +65,24 @@ function createPostgresApp() {
     }),
   );
   app.use(express.json({ limit: "2mb" }));
+
+  const apiKey = process.env.API_KEY;
+  if (apiKey) {
+    app.use("/api", (req, res, next) => {
+      if (req.path === "/health") return next();
+
+      const provided =
+        req.headers["x-api-key"] ||
+        req.headers.authorization?.replace(/^Bearer\s+/i, "");
+
+      if (provided !== apiKey) {
+        return res.status(401).json({ error: "Invalid or missing API key." });
+      }
+
+      next();
+    });
+  }
+
   app.use(async (_req, _res, next) => {
     try {
       await initializePostgresDatabase();
@@ -1106,8 +1148,8 @@ function createPostgresApp() {
     res.json(parseBillingRow(updated));
   });
 
-  app.use((req, res) => {
-    res.status(404).json({ error: `Route not found: ${req.method} ${req.originalUrl}` });
+  app.use((_req, res) => {
+    res.status(404).json({ error: "Route not found." });
   });
 
   app.use((error, _req, res, _next) => {
