@@ -20,7 +20,7 @@ const pool = hasPostgresConfig
       ssl: connectionString.includes("localhost")
         ? false
         : {
-            rejectUnauthorized: false,
+            rejectUnauthorized: process.env.PG_REJECT_UNAUTHORIZED !== "false",
           },
     })
   : null;
